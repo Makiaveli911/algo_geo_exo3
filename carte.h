@@ -162,6 +162,8 @@ private:
 	// Renvoie l�adresse du nouveau demi-c�t�.
 	DemiCote* ajouteDemiCote(const Point &p, DemiCote* oppose=nullptr);
 
+    void flip(DemiCote *d);
+
 
     vector<Sommet*> tableauSommets;       // tableau des sommets
 	vector<DemiCote*> tableauDemiCote;   // tableau des demi-c�t�s

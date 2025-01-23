@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "algo_geo_2.exe"
+			"path" : "algo_geo_3.exe"
 		},
 		{
-			"path" : "algo_geo_2.pdb"
+			"path" : "algo_geo_3.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -82,7 +82,7 @@
 			]
 		}
 	],
-	"id" : "algo_geo_2::@6890427a1f51a3e7e1df",
+	"id" : "algo_geo_3::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -117,8 +117,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "algo_geo_2",
-	"nameOnDisk" : "algo_geo_2.exe",
+	"name" : "algo_geo_3",
+	"nameOnDisk" : "algo_geo_3.exe",
 	"paths" : 
 	{
 		"build" : ".",

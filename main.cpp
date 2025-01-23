@@ -10,13 +10,19 @@ int main() {
     Carte carte;
 
     // Ajouter des points pour les sommets
-        Point p1(100, 100);
-        Point p2(300, 100);
-        Point p3(200, 300);
+        Point p1(50, 250);
+        Point p2(100, 100);
+        Point p3(120, 230);
+        Point p4(245, 25);
+        Point p5(260, 320);
+        Point p6(340, 250);
+        Point p7(355, 110);
+        Point p8(380, 150);
+        Point p9(600, 150);
 
 
     // Ajouter ces points dans un vecteur
-    std::vector<Point> points = {p1, p2, p3};
+    std::vector<Point> points = {p1, p2, p3, p4 , p5 , p6 , p7 , p8 , p9 };
     triangulation(points, carte);
 
     // Afficher un message de succès

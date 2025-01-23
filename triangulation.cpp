@@ -23,27 +23,35 @@ void triangulation(std::vector<Point>& T, Carte& C) {
     }
 
     // Étape 2 : Construire un premier segment de base entre les deux premiers points
-    DemiCote* premierDemiCote = C.ajouteCote(T[0], T[1]);
-    C.changeDemiCoteParticulier(premierDemiCote);
+    DemiCote* demiCoteReference = C.ajouteCote(T[0], T[1]);
+    C.changeDemiCoteParticulier(demiCoteReference);
 
     // Étape 3 : Ajouter les points restants à l'enveloppe convexe
     for (size_t i = 2; i < T.size(); ++i) {
         Point pointAAjouter = T[i];
 
+        DemiCote* demiCoteReference2 = C.ajouteCote(pointAAjouter,demiCoteReference);
+
         // Sens trigonométrique : trouver les côtés à droite du point
-        DemiCote* courantTrigo = premierDemiCote;
-        while (pointAAjouter.aGauche(courantTrigo->point(), courantTrigo->oppose()->point()) < 0) {
-          DemiCote* nouveauDemiCoteTrigo = C.ajouteCote(courantTrigo->oppose(), pointAAjouter);
-          courantTrigo = courantTrigo->suivant();
+
+        auto p1 = demiCoteReference->suivant();
+        auto p2 = demiCoteReference->suivant()->suivant();
+
+        while (pointAAjouter.aGauche(demiCoteReference->point(), demiCoteReference->suivant()->suivant()->oppose()->point()) == -1) {
+            demiCoteReference = demiCoteReference->suivant()->suivant()->oppose();
+            C.ajouteCote(demiCoteReference, demiCoteReference2);
         }
 
-        // Sens anti-trigonométrique : trouver les côtés à gauche du point
-        DemiCote* courantAntiTrigo = premierDemiCote;
-        while (pointAAjouter.aGauche(courantAntiTrigo->precedent()->point(), courantAntiTrigo->point()) > 0) {
-            // Relier le pointAAjouter aux deux sommets valides
-            DemiCote* nouveauDemiCote = C.ajouteCote(courantAntiTrigo, pointAAjouter);
-            courantAntiTrigo = courantAntiTrigo->precedent();
+        demiCoteReference = demiCoteReference2->oppose()->precedent();
+
+        while(pointAAjouter.aGauche(demiCoteReference->oppose()->point(), demiCoteReference->point()) == -1) {
+            demiCoteReference = demiCoteReference->oppose()->precedent();
+            demiCoteReference2 = C.ajouteCote(demiCoteReference2, demiCoteReference);
         }
 
+        demiCoteReference = demiCoteReference2;
+
+        // Relier le pointAAjouter aux deux sommets valides
+        //DemiCote* nouveauDemiCote = C.ajouteCote(sommetReference->oppose(), pointAAjouter);
     }
 }
